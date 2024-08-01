@@ -20,32 +20,21 @@ import {login} from "../apis";
 
     const toLogin =async(data) =>{
     console.log("Login Data",data);
-try {
-  // Call API to login
- let response = await login(data);  // Assuming login function is correctly imported
- console.log(response);
- if(response.data.success){
-   toast.success('Login successful', {
-    icon: '👏',
-  });
-  navigate('/');
-} else {
-   toast.error(response.data.error || 'Login failed');
-//   reset(); // Reset form fields on error
- }  // Redirect to home page after successful login
-} catch (error) {
-  console.error("Login error:", error);
-  if (error.response) {
-    console.error("Response data:", error.response.data);
-    toast.error(error.response.data.error);
-  } else {
-    toast.error('An error occurred. Please try again.');
-  }
-  // reset();  // Reset form fields on error
-}
-};
-    
 
+try {
+
+    let res = await login(data);
+    console.log("Login Response",res);
+    localStorage.setItem('product-token',res.token)
+    toast.success("Scuess")
+    navigate("/")
+
+}catch(error){
+toast.error(error.response.data.error)
+console.log(error);
+}
+    
+    }
   return (
     
         <Box sx={{borderColor:'primary.main'}} 

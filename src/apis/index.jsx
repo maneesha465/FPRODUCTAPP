@@ -1,10 +1,19 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:4528'
+const BASE_URL = 'https://bproductapp.onrender.com'
 
 export const login =async(data) =>{
     try {
         const response = await axios.post(`${BASE_URL}/users/log-in`,data)
+        return response.data
+    } catch (error) {
+       throw error 
+    }
+}
+
+export const signup =async(data) =>{
+    try {
+        const response = await axios.post(`${BASE_URL}/users/sign-up`,data)
         return response.data
     } catch (error) {
        throw error 
